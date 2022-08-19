@@ -31,10 +31,10 @@ export default function App() {
           <Stack.Screen
             name="MealsOverview"
             component={MealsOverviewScreen}
-            options={({ route, navigation}) => {
-              const categoryId = route.params.categoryId
-              const category = CATEGORIES.find(category => category.id === categoryId)
-              return {title: category.title}}}
+            // options={({ route, navigation}) => {
+            //   const categoryId = route.params.categoryId
+            //   const category = CATEGORIES.find(category => category.id === categoryId)
+            //   return {title: category.title}}}
           />
         </Stack.Navigator>
       </NavigationContainer>
