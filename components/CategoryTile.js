@@ -1,11 +1,15 @@
 import { View, Text, StyleSheet, Pressable, Platform } from "react-native";
 
-const CategoryTile = ({ title, color }) => {
+const CategoryTile = ({ title, color, onPress }) => {
   return (
     <View style={styles.outerContainer}>
-      <Pressable android_ripple={{color: 'white'}} style={({pressed}) => [styles.button, pressed && styles.pressedItem]}>
+      <Pressable
+        android_ripple={{ color: "white" }}
+        style={({ pressed }) => [styles.button, pressed && styles.pressedItem]}
+        onPress={onPress}
+      >
         <View style={[styles.innerContainer, { backgroundColor: color }]}>
-        <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{title}</Text>
         </View>
       </Pressable>
     </View>
@@ -26,23 +30,23 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.25,
     shadowRadius: 3,
-    overflow: Platform.OS === 'android' ? "hidden" : "visible"
+    overflow: Platform.OS === "android" ? "hidden" : "visible",
   },
   button: {
-    flex: 1
+    flex: 1,
   },
   pressedItem: {
-    opacity: 0.5
+    opacity: 0.5,
   },
   innerContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     alignItems: "center",
     padding: 16,
     borderRadius: 6,
   },
   title: {
     fontWeight: "bold",
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 });
