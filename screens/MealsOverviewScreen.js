@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
+import MealsTile from "../components/MealsTile";
 
 import { MEALS } from "../data/dummy-data";
 
@@ -10,15 +11,22 @@ const MealsOverviewScreen = ({ route }) => {
   );
 
   const renderMealItem = (itemData) => {
-    return <Text>{itemData.item.title}</Text>
-  }
+    const item = itemData.item;
+    const mealItemProps = {
+      title: item.title,
+      imageUrl: item.imageUrl,
+      affordability: item.affordability,
+      complexity: item.complexity,
+      duration: item.duration
+    }
+    return (
+      <MealsTile {...mealItemProps}/>
+    );
+  };
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        renderItem={renderMealItem}
-      />
+      <FlatList data={displayedMeals} renderItem={renderMealItem} />
     </View>
   );
 };
