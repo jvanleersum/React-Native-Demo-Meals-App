@@ -4,7 +4,6 @@ import { CATEGORIES } from "../data/dummy-data";
 
 const CategoriesScreen = ({ navigation }) => {
   const navigationHandler = (categoryId) => {
-    console.log(categoryId)
     navigation.navigate("MealsOverview", {categoryId: categoryId})
   }
 
