@@ -9,11 +9,15 @@ const MealsOverviewScreen = ({ route }) => {
     meal.categoryIds.includes(categoryId)
   );
 
+  const renderMealItem = (itemData) => {
+    return <Text>{itemData.item.title}</Text>
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
         data={displayedMeals}
-        renderItem={(itemData) => <Text>{itemData.item.title}</Text>}
+        renderItem={renderMealItem}
       />
     </View>
   );
