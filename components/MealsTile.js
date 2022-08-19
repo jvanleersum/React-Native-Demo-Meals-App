@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 const MealsTile = ({ title, imageUrl, affordability, complexity, duration }) => {
   return (
     <View style={styles.outerContainer}>
-      <Pressable android_ripple={{color: 'white'}} style={({pressed}) => [styles.card, pressed && styles.pressed]}>
+      <Pressable android_ripple={{color: 'white'}} style={({pressed}) => pressed && styles.pressed}>
         <View style={styles.innerContainer}>
           <Image source={{ uri: imageUrl }} style={styles.image} />
           <Text style={styles.title}>{title}</Text>
@@ -36,9 +36,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 6,
     overflow: 'hidden'
-  },
-  card: {
-    flex: 1
   },
   pressed: {
     opacity: 0.5
