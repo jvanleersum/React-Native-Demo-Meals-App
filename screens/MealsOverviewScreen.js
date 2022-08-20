@@ -16,6 +16,10 @@ const MealsOverviewScreen = ({ route, navigation }) => {
     meal.categoryIds.includes(categoryId)
   );
 
+  const navigationHandler = (mealId) => {
+    navigation.navigate('MealDetail', {mealId: mealId})
+  }
+
   const renderMealItem = (itemData) => {
     const item = itemData.item;
     const mealItemProps = {
@@ -23,7 +27,8 @@ const MealsOverviewScreen = ({ route, navigation }) => {
       imageUrl: item.imageUrl,
       affordability: item.affordability,
       complexity: item.complexity,
-      duration: item.duration
+      duration: item.duration,
+      onPress: navigationHandler.bind(null, item.id)
     }
     return (
       <MealsTile {...mealItemProps}/>
