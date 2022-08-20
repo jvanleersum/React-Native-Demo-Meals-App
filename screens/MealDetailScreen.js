@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
 import MealCard from "../components/MealCard";
+import Subtitle from "../components/MealDetails/Subtitle";
 import { MEALS } from "../data/dummy-data";
 
 const MealDetailScreen = ({ route, navigation }) => {
@@ -25,9 +26,7 @@ const MealDetailScreen = ({ route, navigation }) => {
       <MealCard {...mealCardProps} />
       <ScrollView style={styles.listsContainer}>
         <View>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Ingredients</Text>
-          </View>
+          <Subtitle title="Ingredients" />
           <View style={styles.list}>
             {meal.ingredients.map((ingr) => (
               <Text key={ingr}>{ingr}</Text>
@@ -35,9 +34,7 @@ const MealDetailScreen = ({ route, navigation }) => {
           </View>
         </View>
         <View>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Steps</Text>
-          </View>
+          <Subtitle title="Steps" />
           <View style={styles.list}>
             {meal.steps.map((step) => (
               <Text key={step}>{step}</Text>
@@ -55,18 +52,6 @@ const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
     margin: 8,
-  },
-  title: {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-  titleContainer: {
-    padding: 8,
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
-    marginHorizontal: 50,
-    marginVertical: 4,
   },
   listsContainer: {
     margin: 16,
