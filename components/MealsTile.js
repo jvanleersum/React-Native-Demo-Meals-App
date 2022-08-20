@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import MealCard from "./MealCard";
 
 const MealsTile = ({
   title,
@@ -8,6 +9,14 @@ const MealsTile = ({
   duration,
   onPress,
 }) => {
+  const mealCardProps = {
+    title: title,
+    imageUrl: imageUrl,
+    affordability: affordability,
+    complexity: complexity,
+    duration: duration,
+  };
+
   return (
     <View style={styles.outerContainer}>
       <Pressable
@@ -15,15 +24,7 @@ const MealsTile = ({
         style={({ pressed }) => pressed && styles.pressed}
         onPress={onPress}
       >
-        <View style={styles.innerContainer}>
-          <Image source={{ uri: imageUrl }} style={styles.image} />
-          <Text style={styles.title}>{title}</Text>
-        </View>
-        <View style={styles.infoContainer}>
-          <Text style={styles.infoItem}>{duration} min</Text>
-          <Text style={styles.infoItem}>{affordability}</Text>
-          <Text style={styles.infoItem}>{complexity}</Text>
-        </View>
+        <MealCard {...mealCardProps} />
       </Pressable>
     </View>
   );
@@ -42,32 +43,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.25,
     shadowRadius: 6,
-  },
-  innerContainer: {
-    flex: 1,
-    borderRadius: 6,
-    overflow: "hidden",
-  },
-  pressed: {
-    opacity: 0.5,
-  },
-  image: {
-    width: "100%",
-    height: 200,
-  },
-  title: {
-    fontWeight: "bold",
-    fontSize: 18,
-    textAlign: "center",
-    margin: 8,
-  },
-  infoContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    padding: 8,
-  },
-  infoItem: {
-    fontSize: 12,
-  },
+  }
 });
