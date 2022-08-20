@@ -1,17 +1,25 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
+
 import MealCard from "../components/MealCard";
 import Subtitle from "../components/MealDetails/Subtitle";
 import List from "../components/MealDetails/List";
+import FavoriteButton from "../components/MealDetails/FavoriteButton";
 import { MEALS } from "../data/dummy-data";
 
 const MealDetailScreen = ({ route, navigation }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   const mealId = route.params.mealId;
   const meal = MEALS.find((meal) => meal.id === mealId);
 
+  const favoriteHandler = () => {
+    setIsFavorite(prevState => !prevState);
+  }
+
   useLayoutEffect(() => {
-    navigation.setOptions({ title: meal.title });
-  }, [meal, navigation]);
+    navigation.setOptions({ title: meal.title, headerRight: () => {
+      return <FavoriteButton isFavorite={isFavorite} onPress={favoriteHandler} />}})
+  }, [meal, navigation, isFavorite, favoriteHandler]);
 
   const mealCardProps = {
     title: meal.title,
