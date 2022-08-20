@@ -27,7 +27,7 @@ const DrawerNavigator = () => {
         options={{
           title: "All Categories",
           drawerIcon: ({color, size}) => {
-            return <Ionicons name="home" color={color} size={size}/>
+            return <Ionicons name="list" color={color} size={size}/>
           }
         }}
       />
