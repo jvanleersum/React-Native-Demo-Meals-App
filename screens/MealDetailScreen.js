@@ -2,6 +2,7 @@ import { useLayoutEffect } from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
 import MealCard from "../components/MealCard";
 import Subtitle from "../components/MealDetails/Subtitle";
+import List from "../components/MealDetails/List";
 import { MEALS } from "../data/dummy-data";
 
 const MealDetailScreen = ({ route, navigation }) => {
@@ -18,31 +19,27 @@ const MealDetailScreen = ({ route, navigation }) => {
     affordability: meal.affordability,
     complexity: meal.complexity,
     duration: meal.duration,
-    imageStyle: { height: 350 },
+    imageStyle: styles.image,
   };
 
   return (
-    <View style={styles.outerContainer}>
-      <MealCard {...mealCardProps} />
-      <ScrollView style={styles.listsContainer}>
-        <View>
-          <Subtitle title="Ingredients" />
-          <View style={styles.list}>
-            {meal.ingredients.map((ingr) => (
-              <Text key={ingr}>{ingr}</Text>
-            ))}
+    <ScrollView>
+      <View style={styles.outerContainer}>
+        <MealCard {...mealCardProps} />
+        <View style={styles.listsOuterContainer}>
+          <View style={styles.listsInnerContainer}>
+            <View>
+              <Subtitle>Ingredients</Subtitle>
+              <List items={meal.ingredients} />
+            </View>
+            <View>
+              <Subtitle>Steps</Subtitle>
+              <List items={meal.steps} />
+            </View>
           </View>
         </View>
-        <View>
-          <Subtitle title="Steps" />
-          <View style={styles.list}>
-            {meal.steps.map((step) => (
-              <Text key={step}>{step}</Text>
-            ))}
-          </View>
-        </View>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -53,11 +50,16 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 8,
   },
-  listsContainer: {
-    margin: 16,
+  listsOuterContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+  listsInnerContainer: {
+    width: "80%",
     marginBottom: 50,
   },
-  list: {
-    marginVertical: 4
+  image: {
+    height: 350,
+    borderRadius: 6
   }
 });
