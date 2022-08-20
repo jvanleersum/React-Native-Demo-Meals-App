@@ -1,10 +1,10 @@
 import { View, Image, Text, StyleSheet } from "react-native";
 
-const MealCard = ({ imageUrl, title, duration, affordability, complexity }) => {
+const MealCard = ({ imageUrl, title, duration, affordability, complexity, imageStyle }) => {
   return (
     <>
       <View style={styles.innerContainer}>
-        <Image source={{ uri: imageUrl }} style={styles.image} />
+        <Image source={{ uri: imageUrl }} style={[styles.image, imageStyle]} resizeMode="cover"/>
         <Text style={styles.title}>{title}</Text>
       </View>
       <View style={styles.infoContainer}>
