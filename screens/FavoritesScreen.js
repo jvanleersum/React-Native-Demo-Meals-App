@@ -1,13 +1,12 @@
 import { View, Text, StyleSheet, Button } from "react-native";
-import { useContext } from "react";
+import { useSelector } from 'react-redux';
 
-import FavoritesContext from "../store/context/favorites-context";
 import MealsList from "../components/MealsList/MealsList";
 import { MEALS } from "../data/dummy-data";
 
 const FavoritesScreen = ({navigation}) => {
-  const favCtx = useContext(FavoritesContext);
-  const favMeals = MEALS.filter((meal) => favCtx.ids.includes(meal.id));
+  const favIds = useSelector(state => state.ids)
+  const favMeals = MEALS.filter((meal) => favIds.includes(meal.id));
 
   const allMealsHandler = () => {
     navigation.navigate("AllCategories")
