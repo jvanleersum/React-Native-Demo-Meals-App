@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import MealCard from "./MealCard";
+import { View, StyleSheet, Pressable } from "react-native";
+import MealCard from "../MealCard";
 
 const MealsTile = ({
   title,

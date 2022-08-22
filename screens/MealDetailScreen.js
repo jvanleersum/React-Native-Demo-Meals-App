@@ -1,5 +1,6 @@
-import { useLayoutEffect, useState } from "react";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { useLayoutEffect, useContext } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
+import FavoritesContext from "../store/context/favorites-context";
 
 import MealCard from "../components/MealCard";
 import Subtitle from "../components/MealDetails/Subtitle";
@@ -8,12 +9,18 @@ import FavoriteButton from "../components/MealDetails/FavoriteButton";
 import { MEALS } from "../data/dummy-data";
 
 const MealDetailScreen = ({ route, navigation }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const favCtx = useContext(FavoritesContext);
   const mealId = route.params.mealId;
   const meal = MEALS.find((meal) => meal.id === mealId);
+  const isFavorite = favCtx.ids.includes(meal.id);
 
   const favoriteHandler = () => {
-    setIsFavorite(prevState => !prevState);
+    if (isFavorite) {
+      favCtx.removeFavorite(meal.id)
+    } else {
+      favCtx.addFavorite(meal.id)
+    }
+    
   }
 
   useLayoutEffect(() => {
