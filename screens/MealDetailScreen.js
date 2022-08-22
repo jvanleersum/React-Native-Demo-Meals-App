@@ -16,13 +16,13 @@ const MealDetailScreen = ({ route, navigation }) => {
   const mealId = route.params.mealId;
   const meal = MEALS.find((meal) => meal.id === mealId);
   
-  isFavorite = favIds.includes(meal.id);
+  isFavorite = favIds.includes(mealId);
 
   const favoriteHandler = () => {
     if (isFavorite) {
-      dispatch(favoriteActions.removeFavorite({id: meal.id}))
+      dispatch(favoriteActions.removeFavorite({id: mealId}))
     } else {
-      dispatch(favoriteActions.addFavorite({id: meal.id}))
+      dispatch(favoriteActions.addFavorite({id: mealId}))
     }
   }
 
